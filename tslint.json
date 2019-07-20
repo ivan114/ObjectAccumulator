@@ -10,14 +10,13 @@
     // types related rules
     "no-inferrable-types": true,
     "no-namespace": {
-      "options": [
-        "allow-declarations"
-      ]
+      "options": ["allow-declarations"]
     },
     "interface-name": {
       "options": "never-prefix"
     },
-    "no-unsafe-any": true,
+    // allow any in this project
+    "no-unsafe-any": false,
     // core lint rules
     "ban": {
       "options": [
@@ -34,17 +33,11 @@
           "message": "use #array-constructor"
         },
         {
-          "name": [
-            "describe",
-            "only"
-          ],
+          "name": ["describe", "only"],
           "message": "don't focus spec blocks"
         },
         {
-          "name": [
-            "it",
-            "only"
-          ],
+          "name": ["it", "only"],
           "message": "don't focus tests"
         }
       ]
@@ -62,17 +55,13 @@
     "match-default-export-name": true,
     "no-parameter-reassignment": true,
     "file-name-casing": {
-      "options": [
-        "kebab-case"
-      ]
+      "options": ["kebab-case"]
     },
     "switch-default": true,
     // tslint:recommended overrides
     "no-any": true,
     "member-access": {
-      "options": [
-        "no-public"
-      ]
+      "options": ["no-public"]
     },
     "object-literal-sort-keys": false,
     "interface-over-type-literal": false,
