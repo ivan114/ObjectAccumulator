@@ -13,11 +13,13 @@ export class Accumulator<T> {
     return accumulator
   }
 
-  e = this.extract
+  static f<T>(item?: AcceptedTargets<T>) {
+    return Accumulator.from(item)
+  }
 
   private source: T[] = []
 
-  add(item?: AcceptedTargets<T>) {
+  add(item?: AcceptedTargets<T>): this {
     if (item instanceof Accumulator) {
       this.source.push(...item.source)
     } else if (Array.isArray(item)) {
@@ -33,6 +35,10 @@ export class Accumulator<T> {
     }
 
     return this
+  }
+
+  a(item?: AcceptedTargets<T>): this {
+    return this.a(item)
   }
 
   extract(extractor: ((item: T) => any) | string) {
@@ -55,6 +61,10 @@ export class Accumulator<T> {
     return undefined
   }
 
+  e(extractor: ((item: T) => any) | string) {
+    return this.extract(extractor)
+  }
+
   merge(nestedMergeKeys: string[] = []): T {
     const nestedMerge = nestedMergeKeys.reduce(
       (acc, key) => ({
@@ -70,7 +80,15 @@ export class Accumulator<T> {
     return Object.assign({}, ...this.source, nestedMerge)
   }
 
+  m(nestedMergeKeys: string[] = []): T {
+    return this.m(nestedMergeKeys)
+  }
+
   clone(add?: AcceptedTargets<T>) {
     return Accumulator.from(this.source).add(add)
+  }
+
+  c(add?: AcceptedTargets<T>) {
+    return this.clone(add)
   }
 }

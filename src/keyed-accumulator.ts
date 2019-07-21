@@ -11,10 +11,9 @@ export class KeyedAccumulator<T> {
     return accumulator
   }
 
-  g = this.get
   private source: Array<KeyedType<T>> = []
 
-  add(map?: AcceptTarget<T>) {
+  add(map?: AcceptTarget<T>): this {
     if (map instanceof KeyedAccumulator) {
       this.source.push(...map.source)
     } else if (Array.isArray(map)) {
@@ -26,8 +25,16 @@ export class KeyedAccumulator<T> {
     return this
   }
 
+  a(map?: AcceptTarget<T>): this {
+    return this.add(map)
+  }
+
   get(key: string) {
     return Accumulator.from(this.source.map((map) => map[key]))
+  }
+
+  g(key: string) {
+    return this.get(key)
   }
 
   merge(): KeyedType<T> {
@@ -46,7 +53,15 @@ export class KeyedAccumulator<T> {
     )
   }
 
+  m() {
+    return this.merge()
+  }
+
   clone(add?: AcceptTarget<T>) {
     return KeyedAccumulator.from(this.source).add(add)
+  }
+
+  c(add?: AcceptTarget<T>) {
+    return this.clone(add)
   }
 }
