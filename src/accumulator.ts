@@ -6,11 +6,35 @@ export class Accumulator<T> {
   static from<T>(item?: AcceptedTargets<T>) {
     if (item instanceof Accumulator) {
       return item
-    }
-    const accumulator = new Accumulator<T>()
-    accumulator.add(item)
+    } else if (Array.isArray(item)) {
+      const filteredItems: Array<T | Accumulator<T>> = (item as Array<
+        T | Accumulator<T>
+      >).filter((i) => i)
+      if (filteredItems.length === 0) {
+        return new Accumulator<T>()
+      }
+      if (filteredItems[0] instanceof Accumulator) {
+        const t = new Accumulator<T>()
+        ;(filteredItems as Array<Accumulator<T> | undefined>).forEach(
+          (i: Accumulator<T> | undefined) => {
+            if (i === undefined) {
+              return
+            }
+            t.add(i.source)
+          }
+        )
 
-    return accumulator
+        return t
+      }
+
+      return new Accumulator<T>(filteredItems as T[])
+    }
+
+    if (item === undefined) {
+      return new Accumulator<T>()
+    }
+
+    return new Accumulator<T>([item])
   }
 
   static f<T>(item?: AcceptedTargets<T>) {
@@ -18,6 +42,12 @@ export class Accumulator<T> {
   }
 
   private source: T[] = []
+
+  constructor(items?: T[]) {
+    if (items) {
+      this.source = items
+    }
+  }
 
   add(item?: AcceptedTargets<T>): this {
     if (item instanceof Accumulator) {
@@ -81,7 +111,7 @@ export class Accumulator<T> {
   }
 
   m(nestedMergeKeys: string[] = []): T {
-    return this.m(nestedMergeKeys)
+    return this.merge(nestedMergeKeys)
   }
 
   clone(add?: AcceptedTargets<T>) {

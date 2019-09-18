@@ -15,6 +15,6 @@ fs.copyFileSync(
 )
 fs.copyFileSync(
   './dist/bundles/index.umd.js.map',
-  `${PUBLIC_SCRIPT_DIRECTORY}/index.js.map`
+  `${PUBLIC_SCRIPT_DIRECTORY}/index.umd.js.map`
 )
 console.log('Done copying!!')

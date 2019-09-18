@@ -59,6 +59,8 @@ it('KeyedAccumulator: Nested Accumulator', () => {
     { a: Accumulator.from({ y: 4 }), b: Accumulator.from({ y: 4 }) },
   ]
   const a = KeyedAccumulator.from(nestedAccumulator)
+  expect(a.get('b').m()).toEqual({ x: 2, y: 4 })
+  expect(a.merge()).toEqual({ a: { x: 3, y: 4 }, b: { x: 2, y: 4 } })
   const b = a.clone({
     a: Accumulator.from({ y: 10 }),
     b: Accumulator.from({ y: 10 }),
