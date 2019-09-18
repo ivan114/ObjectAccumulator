@@ -95,7 +95,10 @@ async function askForAmount() {
     users.push(user)
   }
 
-  fs.writeFileSync('./public/test-users.json', JSON.stringify(users, null, 2))
+  fs.writeFileSync(
+    `./public/${amount}-users.json`,
+    JSON.stringify(users, null, 2)
+  )
 
   process.exit()
 })()

@@ -7,8 +7,13 @@
     <div class="row">
       <div class="col">
         <dl>
-          <dt>Users Data</dt>
-          <dd><button id="btn-load-data">- NOT LOADED -</button></dd>
+          <dt>Users Data: <span id="user-load-status">- NOT LOADED -/span></dt>
+          <dd>
+            <button id="btn-load-10000">Load 10000</button>
+            <button id="btn-load-25000">Load 25000</button>
+            <button id="btn-load-50000">Load 50000</button>
+            <button id="btn-load-100000">Load 100000</button>
+          </dd>
           <dt>Object.assign</dt>
           <dd><button id="btn-test-assign">- NOT TESTED -</button></dd>
           <dt>Accumulator</dt>
@@ -22,23 +27,28 @@
     let userData = undefined;
     function updateUserDataStatus(){
       if(userData === undefined){
-        document.getElementById("btn-load-data").textContent = "- NOT LOADED -"
+        document.getElementById("user-load-status").textContent = "- NOT LOADED -"
       }else if(userData.length === 0){
-        document.getElementById("btn-load-data").textContent = "EMPTY"
+        document.getElementById("user-load-status").textContent = "EMPTY"
       }else{
-        document.getElementById("btn-load-data").textContent = "Length: " + userData.length
+        document.getElementById("user-load-status").textContent = "Length: " + userData.length
       }
     }
 
-    document.getElementById("btn-load-data").addEventListener("click", function(e){
-      document.getElementById("btn-load-data").textContent = "Loading..."
-      fetch("./test-users.json").then(data => {
-         data.json().then(j => {
-          userData = j
-          updateUserDataStatus();
-        });
+    function setLoadDataButton(amount){
+      document.getElementById("btn-load-" + amount).addEventListener("click", function(e){
+        fetch("./" + amount + "-users.json").then(data => {
+           data.json().then(j => {
+            userData = j
+            updateUserDataStatus();
+          });
+        })
       })
-    })
+    }
+    setLoadDataButton(10000);
+    setLoadDataButton(25000);
+    setLoadDataButton(50000);
+    setLoadDataButton(100000);
 
     document.getElementById("btn-test-assign").addEventListener("click", function(){
       if(userData === undefined){
@@ -48,7 +58,6 @@
       const user = Object.assign({}, ...userData);
       const t2 = performance.now();
       document.getElementById("btn-test-assign").textContent = t2 - t1;
-      alert(JSON.stringify(user));
     })
 
     document.getElementById("btn-test-accumulator").addEventListener("click", function(){
@@ -60,7 +69,6 @@
       const country = ac.e("country");
       const t2 = performance.now();
       document.getElementById("btn-test-accumulator").textContent = t2 - t1;
-      alert(country);
     })
 
     updateUserDataStatus();
