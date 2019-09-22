@@ -51,11 +51,11 @@ export class Accumulator<T> {
 
   add(item?: AcceptedTargets<T>): this {
     if (item instanceof Accumulator) {
-      this.source.push(...item.source)
+      this.source.concat(item.source)
     } else if (Array.isArray(item)) {
       ;(item as Array<Accumulator<T> | T>).forEach((i: Accumulator<T> | T) => {
         if (i instanceof Accumulator) {
-          this.source.push(...i.source)
+          this.source.concat(i.source)
         } else {
           this.source.push(i)
         }

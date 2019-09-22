@@ -14,10 +14,12 @@
             <button id="btn-load-50000">Load 50000</button>
             <button id="btn-load-100000">Load 100000</button>
           </dd>
-          <dt>Object.assign</dt>
+          <dt>{...[Objects]}</dt>
           <dd><button id="btn-test-assign">- NOT TESTED -</button></dd>
           <dt>Accumulator</dt>
           <dd><button id="btn-test-accumulator">- NOT TESTED -</button></dd>
+          <dt>Map</dt>
+          <dd><button id="btn-test-map" disabled>- NOT AVAILABLE -</button></dd>
         </dl>
       </div>
     </div>
@@ -55,7 +57,7 @@
         return;
       }
       const t1 = performance.now();
-      const user = Object.assign({}, ...userData);
+      const user = {...userData};
       const t2 = performance.now();
       document.getElementById("btn-test-assign").textContent = t2 - t1;
     })
@@ -69,6 +71,18 @@
       const country = ac.e("country");
       const t2 = performance.now();
       document.getElementById("btn-test-accumulator").textContent = t2 - t1;
+    })
+
+    document.getElementById("btn-test-map").addEventListener("click", function(){
+      if(userData === undefined){
+        return;
+      }
+      const t1 = performance.now();
+      const map = new Map(...userData.map(user => Object.entries(user)));
+      const obj = Object.fromEntries(map)
+      const t2 = performance.now();
+      document.getElementById("btn-test-map").textContent = t2 - t1;
+      alert(JSON.stringify(obj))
     })
 
     updateUserDataStatus();
