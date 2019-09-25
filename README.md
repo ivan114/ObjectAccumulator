@@ -22,6 +22,7 @@
 - High Performance (Lazy picking value instead of really merging objects)
 - Low Memory Usage (Alway reuse same instance data structure instead of creating new every time)
 - Lazy Process and Interactive (Merge when you need the result, not doing unnecessary processing, Accumulator can be manipulated before/after merge)
+- Lightweight without external dependencies (~1KB gzip)
 
 ## 🔧 Installation
 
@@ -86,12 +87,14 @@ a.add({
   country: 'Japan',
 })
 
+// Can extract single targeted value from Accumulator, no need to merge whole object, a lot faster
 const mergedEmail = a.extract('email')
 // Clementine_Aufderhar83@hotmail.com
 
 const mergedCountry = a.extract('country')
 // Japan
 
+// Merge whole object if it is really needed, not as fast as extract but still reasonable efficient
 const result = a.merge()
 // {"firstName":"Patience","lastName":"Klocko","username":"Clementine_Aufderhar","email":"Patience.Cremin@yahoo.com","phoneNo":"(069) 975-2864","country":"Japan"}
 ```
