@@ -17,8 +17,11 @@
 
 ## ✨ Features
 
-- feature one
-- feature two
+- Merge objects with volume/performance concern.
+- Support high volume (Object.assign merging 100000 items on Safari throw exception :/ )
+- High Performance (Lazy picking value instead of really merging objects)
+- Low Memory Usage (Alway reuse same instance data structure instead of creating new every time)
+- Lazy Process and Interactive (Merge when you need the result, not doing unnecessary processing, Accumulator can be manipulated before/after merge)
 
 ## 🔧 Installation
 
@@ -28,11 +31,72 @@ yarn add object-accumulator
 
 ## 🎬 Getting started
 
-Let's demonstrate simple usage with ... example:
+Package provide an easy-to-use **Accumulator** object to perform merge.
+
+First, for this example, a list of user objects that needed to be merge is here, for real world usage the amount of object may be a lot more.
+
+```json
+[
+  {
+    "firstName": "Bobbie",
+    "lastName": "Klocko",
+    "username": "Bobbie25",
+    "email": "Bobbie_Klocko93@hotmail.com",
+    "phoneNo": "223-401-4005 x8835",
+    "country": "Berkshire"
+  },
+  {
+    "firstName": "Electa",
+    "username": "Electa.Bechtelar",
+    "phoneNo": "1-090-965-9494 x6833",
+    "country": "Bedfordshire"
+  },
+  {
+    "username": "Nicholaus14"
+  },
+  {
+    "firstName": "Reynold",
+    "username": "Reynold.Crooks67",
+    "phoneNo": "(069) 975-2864"
+  },
+  {
+    "firstName": "Clementine",
+    "username": "Clementine_Aufderhar",
+    "email": "Clementine_Aufderhar83@hotmail.com"
+  },
+  {
+    "firstName": "Patience",
+    "email": "Patience.Cremin@yahoo.com"
+  }
+]
+```
+
+Usage:
 
 ```ts
-// your code example
+import { Accumulator } from 'object-accumulator'
+
+import { users } from './user'
+
+// Create new instance of Accumulator, list of object here is passed by reference so memory usage is minimum
+const a = Accumulator.from(users)
+
+// Objects is not merged immediately, Accumulator allow item(s) to be added afterward
+a.add({
+  country: 'Japan',
+})
+
+const mergedEmail = a.extract('email')
+// Clementine_Aufderhar83@hotmail.com
+
+const mergedCountry = a.extract('country')
+// Japan
+
+const result = a.merge()
+// {"firstName":"Patience","lastName":"Klocko","username":"Clementine_Aufderhar","email":"Patience.Cremin@yahoo.com","phoneNo":"(069) 975-2864","country":"Japan"}
 ```
+
+## 👀 How it works
 
 ## 🎭 Examples
 

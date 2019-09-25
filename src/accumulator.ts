@@ -43,9 +43,12 @@ export class Accumulator<T> {
 
   private source: T[] = []
 
+  private keySet = new Set<string>()
+
   constructor(items?: T[]) {
     if (items) {
       this.source = items
+      this.registerKeys()
     }
   }
 
@@ -63,6 +66,8 @@ export class Accumulator<T> {
     } else if (item !== undefined) {
       this.source.push(item)
     }
+
+    this.registerKeys()
 
     return this
   }
@@ -95,23 +100,17 @@ export class Accumulator<T> {
     return this.extract(extractor)
   }
 
-  merge(nestedMergeKeys: string[] = []): T {
-    const nestedMerge = nestedMergeKeys.reduce(
-      (acc, key) => ({
-        ...acc,
-        [key]: Object.assign(
-          {},
-          ...this.source.filter((i) => i).map((i) => (i as any)[key])
-        ),
-      }),
-      {}
-    )
+  merge(): T {
+    const result = {}
+    for (const k of this.keySet) {
+      ;(result as any)[k] = this.e(k)
+    }
 
-    return Object.assign({}, ...this.source, nestedMerge)
+    return result as T
   }
 
-  m(nestedMergeKeys: string[] = []): T {
-    return this.merge(nestedMergeKeys)
+  m(): T {
+    return this.merge()
   }
 
   clone(add?: AcceptedTargets<T>) {
@@ -120,5 +119,18 @@ export class Accumulator<T> {
 
   c(add?: AcceptedTargets<T>) {
     return this.clone(add)
+  }
+
+  getRegisteredKeySet() {
+    return this.keySet
+  }
+
+  private registerKeys() {
+    if (this.keySet.size !== 0) {
+      return
+    }
+    if (this.source && this.source.length !== 0) {
+      Object.keys(this.source[0]).forEach((k) => this.keySet.add(k))
+    }
   }
 }
