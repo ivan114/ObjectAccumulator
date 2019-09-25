@@ -19,10 +19,10 @@
 
 - Merge objects with high volume and good performance concern.
 - Support high volume (Object.assign merging 100000 items on Safari throw exception :/ )
-- High Performance (Lazy picking value instead of really merging objects)
+- High Performance (Lazy picking value instead of really merging all objects)
 - Low Memory Usage (Alway reuse same instance data structure instead of creating new every time)
-- Lazy Process and Interactive (Merge when you need the result, not doing unnecessary processing, Accumulator can be manipulated before/after merge)
-- Lightweight without external dependencies (~1KB gzipped)
+- Lazy Process and Interactive (Perform merge only when you need the result, not doing unnecessary processing, Accumulator can be manipulated before/after merge)
+- Lightweight and without external dependencies (~1KB gzipped)
 
 ## 🔧 Installation
 
@@ -89,7 +89,6 @@ a.add({
 
 // Can extract single targeted value from Accumulator, no need to merge whole object, a lot faster
 const mergedEmail = a.extract('email') // Clementine_Aufderhar83@hotmail.com
-
 const mergedCountry = a.extract('country') // Japan
 
 // Merge whole object if it is really needed, not as fast as extract() but still reasonable efficient
