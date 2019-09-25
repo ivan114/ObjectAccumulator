@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/1223799/50992071-73562500-1516-11e9-99fa-9f73b0f0eee2.png" width="597" alt="object-accumulator">
+  <img src="https://p165.p3.n0.cdn.getcloudapp.com/items/v1uAdE7X/banner.png?v=a06d76c5bf0cd8ec6b74daa36abb171a" width="900" alt="object-accumulator-banner">
 </p>
 
 # object-accumulator
 
-> A library written in TypeScript
+> A Javascript/Typescript object merging tool, focus on performance and easy-to-use. Good alternative to _deepmerge_ (in most case) if you need fast/lazy result.
 
 [![Build Status](https://travis-ci.org/ivan114/object-accumulator.svg?branch=master)](https://travis-ci.org/ivan114/object-accumulator)
 [![NPM version](https://img.shields.io/npm/v/object-accumulator.svg)](https://www.npmjs.com/package/object-accumulator)
@@ -17,12 +17,12 @@
 
 ## ✨ Features
 
-- Merge objects with volume/performance concern.
+- Merge objects with high volume and good performance concern.
 - Support high volume (Object.assign merging 100000 items on Safari throw exception :/ )
 - High Performance (Lazy picking value instead of really merging objects)
 - Low Memory Usage (Alway reuse same instance data structure instead of creating new every time)
 - Lazy Process and Interactive (Merge when you need the result, not doing unnecessary processing, Accumulator can be manipulated before/after merge)
-- Lightweight without external dependencies (~1KB gzip)
+- Lightweight without external dependencies (~1KB gzipped)
 
 ## 🔧 Installation
 
@@ -88,13 +88,11 @@ a.add({
 })
 
 // Can extract single targeted value from Accumulator, no need to merge whole object, a lot faster
-const mergedEmail = a.extract('email')
-// Clementine_Aufderhar83@hotmail.com
+const mergedEmail = a.extract('email') // Clementine_Aufderhar83@hotmail.com
 
-const mergedCountry = a.extract('country')
-// Japan
+const mergedCountry = a.extract('country') // Japan
 
-// Merge whole object if it is really needed, not as fast as extract but still reasonable efficient
+// Merge whole object if it is really needed, not as fast as extract() but still reasonable efficient
 const result = a.merge()
 // {"firstName":"Patience","lastName":"Klocko","username":"Clementine_Aufderhar","email":"Patience.Cremin@yahoo.com","phoneNo":"(069) 975-2864","country":"Japan"}
 ```

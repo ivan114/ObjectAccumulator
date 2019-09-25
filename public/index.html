@@ -7,23 +7,38 @@
     <div class="row">
       <div class="col">
         <dl>
-          <dt>Users Data: <span id="user-load-status">- NOT LOADED -/span></dt>
+          <dt>Users Data: <span id="user-load-status">- NOT LOADED -</dt>
           <dd>
             <button id="btn-load-10000">Load 10000</button>
             <button id="btn-load-25000">Load 25000</button>
             <button id="btn-load-50000">Load 50000</button>
             <button id="btn-load-100000">Load 100000</button>
           </dd>
-          <dt>{...[Objects]}</dt>
-          <dd><button id="btn-test-assign">- NOT TESTED -</button></dd>
           <dt>Accumulator</dt>
-          <dd><button id="btn-test-accumulator">- NOT TESTED -</button></dd>
+          <dd>
+            <button id="btn-test-accumulator">- NOT TESTED -</button>
+            </br>
+            <textarea id="textarea-test-accumulator"></textarea>
+          </dd>
+          <dt>Object.assign</dt>
+          <dd>
+            <button id="btn-test-assign">- NOT TESTED -</button>
+            </br>
+            <textarea id="textarea-test-assign"></textarea>
+          </dd>
+          <dt>deepmerge</dt>
+          <dd>
+            <button id="btn-test-deepmerge">- NOT TESTED -</button>
+            </br>
+            <textarea id="textarea-test-deepmerge"></textarea>
+          </dd>
           <dt>Map</dt>
           <dd><button id="btn-test-map" disabled>- NOT AVAILABLE -</button></dd>
         </dl>
       </div>
     </div>
   </div>
+  <script src="https://unpkg.com/deepmerge@4.0.0/dist/umd.js"></script>
   <script src="./scripts/accumulator.js"></script>
   <script>
     let userData = undefined;
@@ -57,8 +72,9 @@
         return;
       }
       const t1 = performance.now();
-      const user = {...userData};
+      const result = Object.assign({}, ...userData);
       const t2 = performance.now();
+      document.getElementById("textarea-test-assign").value = JSON.stringify(result, null, "\t")
       document.getElementById("btn-test-assign").textContent = t2 - t1;
     })
 
@@ -68,9 +84,21 @@
       }
       const t1 = performance.now();
       const ac = ObjectAccumulator.Accumulator.from(userData);
-      const country = ac.e("country");
+      const result = ac.m();
       const t2 = performance.now();
+      document.getElementById("textarea-test-accumulator").value = JSON.stringify(result, null, "\t")
       document.getElementById("btn-test-accumulator").textContent = t2 - t1;
+    })
+
+    document.getElementById("btn-test-deepmerge").addEventListener("click", function(){
+      if(userData === undefined){
+        return;
+      }
+      const t1 = performance.now();
+      const result = deepmerge.all(userData);
+      const t2 = performance.now();
+      document.getElementById("textarea-test-deepmerge").value = JSON.stringify(result, null, "\t")
+      document.getElementById("btn-test-deepmerge").textContent = t2 - t1;
     })
 
     document.getElementById("btn-test-map").addEventListener("click", function(){
