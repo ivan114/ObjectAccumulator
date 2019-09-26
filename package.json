@@ -1,14 +1,18 @@
 {
   "name": "object-accumulator",
   "version": "0.0.0",
-  "description": "A library written in TypeScript",
+  "description": "A Javascript/Typescript object merging tool, focus on performance and easy-to-use. Good alternative to _deepmerge_ (in most case) if you need fast/lazy result.",
   "keywords": [
     "object",
     "accumulator",
     "merge",
     "quick",
     "fast",
-    "simple"
+    "simple",
+    "deepmerge",
+    "lightweight",
+    "performance",
+    "browser"
   ],
   "main": "./bundles/index.umd.js",
   "module": "./esm5/index.js",

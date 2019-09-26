@@ -55,7 +55,7 @@
 
     function setLoadDataButton(amount){
       document.getElementById("btn-load-" + amount).addEventListener("click", function(e){
-        fetch("./" + amount + "-users.json").then(data => {
+        fetch("./users/" + amount + "-users.json").then(data => {
            data.json().then(j => {
             userData = j
             updateUserDataStatus();
