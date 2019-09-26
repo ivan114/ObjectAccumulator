@@ -107,3 +107,27 @@ it('Accumulator: Register keys', () => {
   expect(a.getRegisteredKeySet().has('d')).toBeTruthy()
   expect(a.getRegisteredKeySet().has('e')).toBeFalsy()
 })
+
+it('Accumulator: Deep merge', () => {
+  const obj1 = {
+    a: {
+      x: 1,
+      y: 2,
+      z: 3,
+    },
+  }
+  const obj2 = {
+    a: {
+      y: 3,
+      z: 4,
+    },
+  }
+  const a = Accumulator.from([obj1, obj2])
+  expect(a.merge()).toMatchObject({
+    a: {
+      x: 1,
+      y: 3,
+      z: 4,
+    },
+  })
+})

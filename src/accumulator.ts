@@ -2,6 +2,14 @@
 
 type AcceptedTargets<T> = T | T[] | Accumulator<T> | Array<Accumulator<T>>
 
+interface ExtractionConfig {
+  shallow?: boolean
+}
+
+function isNonNullObject(value: any) {
+  return !!value && typeof value === 'object'
+}
+
 export class Accumulator<T> {
   static from<T>(item?: AcceptedTargets<T>) {
     if (item instanceof Accumulator) {
@@ -76,18 +84,27 @@ export class Accumulator<T> {
     return this.a(item)
   }
 
-  extract(extractor: ((item: T) => any) | string) {
+  extract(
+    extractor: ((item: T) => any) | string,
+    config: ExtractionConfig = {}
+  ) {
+    const { shallow } = config
     // use while loop to search backward is faster;
     let searchingIndex = this.source.length - 1
+    const ex = (i: T) =>
+      typeof extractor === 'string' ? (i as any)[extractor] : extractor(i)
     while (searchingIndex !== -1) {
       const item = this.source[searchingIndex]
       if (item !== undefined) {
-        const result =
-          typeof extractor === 'string'
-            ? (item as any)[extractor]
-            : extractor(item)
-        if (result !== undefined) {
-          return result
+        const extractedValue = ex(item)
+        // If it is object, use nested Accumulator approach
+        if (!shallow && isNonNullObject(extractedValue)) {
+          return Accumulator.from(
+            this.source.map(ex).filter(isNonNullObject)
+          ).merge()
+        }
+        if (extractedValue !== undefined) {
+          return extractedValue
         }
       }
       searchingIndex--
@@ -96,14 +113,14 @@ export class Accumulator<T> {
     return undefined
   }
 
-  e(extractor: ((item: T) => any) | string) {
-    return this.extract(extractor)
+  e(extractor: ((item: T) => any) | string, config: ExtractionConfig = {}) {
+    return this.extract(extractor, config)
   }
 
-  merge(): T {
+  merge(config: ExtractionConfig = {}): T {
     const result = {}
     for (const k of this.keySet) {
-      ;(result as any)[k] = this.e(k)
+      ;(result as any)[k] = this.e(k, config)
     }
 
     return result as T
