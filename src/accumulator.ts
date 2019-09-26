@@ -10,7 +10,25 @@ function isNonNullObject(value: any) {
   return !!value && typeof value === 'object'
 }
 
+/**
+ * Accumulator class for doing all merging action
+ *
+ * @export
+ * @class Accumulator
+ * @template T
+ */
 export class Accumulator<T> {
+  /**
+   * Static builder for creating instance, this method accept various type of item for making new Accumulator.
+   * Including single item, array of items, single Accumulator, array of Accumulators.
+   * This static method will process these kinds of input into Accumulator
+   *
+   * @static
+   * @template T
+   * @param {AcceptedTargets<T>} [item]
+   * @returns
+   * @memberof Accumulator
+   */
   static from<T>(item?: AcceptedTargets<T>) {
     if (item instanceof Accumulator) {
       return item
@@ -45,14 +63,42 @@ export class Accumulator<T> {
     return new Accumulator<T>([item])
   }
 
+  /**
+   * Alias of Accumulator::from
+   *
+   * @ignore
+   * @static
+   * @template T
+   * @param {AcceptedTargets<T>} [item]
+   * @returns
+   * @memberof Accumulator
+   */
   static f<T>(item?: AcceptedTargets<T>) {
     return Accumulator.from(item)
   }
 
+  /**
+   * Array that stores the objects that needed to be merge/extracted
+   *
+   * @private
+   * @type {T[]}
+   * @memberof Accumulator
+   */
   private source: T[] = []
 
+  /**
+   *
+   *
+   * @private
+   * @memberof Accumulator
+   */
   private keySet = new Set<string>()
 
+  /**
+   * Creates an instance of Accumulator.
+   * @param {T[]} [items]
+   * @memberof Accumulator
+   */
   constructor(items?: T[]) {
     if (items) {
       this.source = items
@@ -60,6 +106,13 @@ export class Accumulator<T> {
     }
   }
 
+  /**
+   * add item(s) after instance created
+   *
+   * @param {AcceptedTargets<T>} [item]
+   * @returns {this}
+   * @memberof Accumulator
+   */
   add(item?: AcceptedTargets<T>): this {
     if (item instanceof Accumulator) {
       this.source.concat(item.source)
@@ -80,10 +133,27 @@ export class Accumulator<T> {
     return this
   }
 
+  /**
+   *  Alias of Accumulator::add
+   *
+   * @ignore
+   * @param {AcceptedTargets<T>} [item]
+   * @returns {this}
+   * @memberof Accumulator
+   */
   a(item?: AcceptedTargets<T>): this {
     return this.a(item)
   }
 
+  /**
+   * Extract single value from Accumulator,
+   * can use string key or extractor callback
+   *
+   * @param {(((item: T) => any) | string)} extractor
+   * @param {ExtractionConfig} [config={}]
+   * @returns
+   * @memberof Accumulator
+   */
   extract(
     extractor: ((item: T) => any) | string,
     config: ExtractionConfig = {}
@@ -113,10 +183,26 @@ export class Accumulator<T> {
     return undefined
   }
 
+  /**
+   * Alias of Accumulator::extract
+   *
+   * @ignore
+   * @param {(((item: T) => any) | string)} extractor
+   * @param {ExtractionConfig} [config={}]
+   * @returns
+   * @memberof Accumulator
+   */
   e(extractor: ((item: T) => any) | string, config: ExtractionConfig = {}) {
     return this.extract(extractor, config)
   }
 
+  /**
+   * Merge whole object
+   *
+   * @param {ExtractionConfig} [config={}]
+   * @returns {T}
+   * @memberof Accumulator
+   */
   merge(config: ExtractionConfig = {}): T {
     const result = {}
     for (const k of this.keySet) {
@@ -126,20 +212,49 @@ export class Accumulator<T> {
     return result as T
   }
 
+  /**
+   * Alias of Accumulator::merge
+   *
+   * @ignore
+   * @returns {T}
+   * @memberof Accumulator
+   */
   m(): T {
     return this.merge()
   }
 
+  /**
+   * Clone a new instance of Accumulator with same items inside,
+   * optional parameter item can be passed into it for adding into the new Accumulator at the same time
+   *
+   * @param {AcceptedTargets<T>} [add]
+   * @returns
+   * @memberof Accumulator
+   */
   clone(add?: AcceptedTargets<T>) {
     return Accumulator.from(this.source).add(add)
   }
 
+  /**
+   * Alias of Accumulator::clone
+   *
+   * @ignore
+   * @param {AcceptedTargets<T>} [add]
+   * @returns
+   * @memberof Accumulator
+   */
   c(add?: AcceptedTargets<T>) {
     return this.clone(add)
   }
 
+  /**
+   * Getting copy of set of keys, which is used of merging
+   *
+   * @returns
+   * @memberof Accumulator
+   */
   getRegisteredKeySet() {
-    return this.keySet
+    return new Set(this.keySet)
   }
 
   private registerKeys() {
