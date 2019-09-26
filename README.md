@@ -4,7 +4,7 @@
 
 # object-accumulator
 
-> A Javascript/Typescript object merging tool, focus on performance and easy-to-use. Good alternative to _deepmerge_ (in most case) if you need fast/lazy result.
+> A Javascript/Typescript object merging tool, focus on performance and easy-to-use. Good alternative to _deepmerge_ in most case.
 
 [![Build Status](https://travis-ci.org/ivan114/object-accumulator.svg?branch=master)](https://travis-ci.org/ivan114/object-accumulator)
 [![NPM version](https://img.shields.io/npm/v/object-accumulator.svg)](https://www.npmjs.com/package/object-accumulator)
@@ -97,6 +97,11 @@ const result = a.merge()
 ```
 
 ## 👀 How it works
+
+<p align="center">
+Normal Merging
+  <img src="https://p165.p3.n0.cdn.getcloudapp.com/items/NQueL0dd/MergeAnimation.gif?v=e618ce9afe2c5e80a4f841b67293404d" width="850" alt="merging-animation">
+</p>
 
 ## 🎭 Examples
 
