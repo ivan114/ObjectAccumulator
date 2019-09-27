@@ -100,7 +100,7 @@ const result = a.merge()
 
 <p align="center">
 Normal Merging
-  <img src="https://p165.p3.n0.cdn.getcloudapp.com/items/NQueL0dd/MergeAnimation.gif?v=e618ce9afe2c5e80a4f841b67293404d" width="850" alt="merging-animation">
+  <img src="https://p165.p3.n0.cdn.getcloudapp.com/items/nOuWde56/MergeAnimation.gif?v=9ef9ef6cf2cda2da2c4ddec459fe3024" width="850" alt="merging-animation">
 </p>
 
 ## 🎭 Examples
