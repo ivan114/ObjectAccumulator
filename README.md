@@ -36,6 +36,11 @@ Package provide an easy-to-use **Accumulator** object to perform merge.
 
 First, for this example, a list of user objects that needed to be merge is here, for real world usage the amount of object may be a lot more.
 
+<details>
+<summary>
+Example User Data:
+</summary>
+
 ```json
 [
   {
@@ -72,6 +77,8 @@ First, for this example, a list of user objects that needed to be merge is here,
 ]
 ```
 
+</details>
+
 Usage:
 
 ```ts
@@ -98,35 +105,27 @@ const result = a.merge()
 
 ## 👀 How it works
 
+To achieve these benefits, there are few tricks apply in Accumulator. The main trick is to use different approach to combine objects into one.
+
+### Classic Merging
+
+For classic merging, each instance of merging object will be iterated, therefore when the amount of items is a lot, performance will suffer.
+
 <p align="center">
-Normal Merging
+  Classic Merge
   <img src="https://p165.p3.n0.cdn.getcloudapp.com/items/nOuWde56/MergeAnimation.gif?v=9ef9ef6cf2cda2da2c4ddec459fe3024" width="850" alt="merging-animation">
 </p>
 
-## 🎭 Examples
+### "Merging" in Object Accumulator
 
-Go checkout [examples](./examples) !
+Object Accumulator use a major shortcut to achieve fast merging. Instead of looping through and real merging each object in the items. Object Accumulator trace object properties backward to acquire needed values, so in normal scenario, merging can be completed without iterating all items.
+
+<p align="center">
+  Smart Merge
+  <img src="https://p165.p3.n0.cdn.getcloudapp.com/items/xQuvKoQG/AccumulateAnimation.gif?v=98bab277080032f43a689978a79e9265" width="850" alt="merging-animation">
+</p>
 
 ## 📜 API
-
-> Document your API here
-
-### `publicMethodOne(value:string): string`
-
-This methods does foo bar moo...
-
-**Example:**
-
-```ts
-// example
-```
-
-## 🎓 Guides
-
-<details>
-<summary>How to do Foo</summary>
-Today we're gonna build Foo....
-</details>
 
 ### 🕵️ Troubleshooting
 
