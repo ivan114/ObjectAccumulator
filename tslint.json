@@ -6,6 +6,7 @@
     "tslint-react",
     "tslint-config-prettier"
   ],
+  "rulesDirectory": ["node_modules/tslint-microsoft-contrib"],
   "rules": {
     // types related rules
     "no-inferrable-types": true,
@@ -49,6 +50,7 @@
       "options": "check-function-in-method"
     },
     "no-invalid-template-strings": true,
+    "no-unsupported-browser-code": [true, ["IE 11"]],
     "ordered-imports": true,
     "prefer-template": true,
     "newline-before-return": true,
