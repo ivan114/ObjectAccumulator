@@ -247,16 +247,6 @@ export class Accumulator<T> {
     return this.clone(add)
   }
 
-  /**
-   * Getting copy of set of keys, which is used of merging
-   *
-   * @returns
-   * @memberof Accumulator
-   */
-  getRegisteredKeySet() {
-    return new Set(this.keySet)
-  }
-
   private registerKeys() {
     if (this.keySet.size !== 0) {
       return

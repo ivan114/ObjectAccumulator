@@ -72,17 +72,6 @@ it('Accumulator: Merge', () => {
   expect(a.merge()).toEqual({ a: 3, b: 5, c: 6 })
 })
 
-// it('Accumulator: Nested Merge', () => {
-//   const a = Accumulator.from([
-//     { nested: { a: 1 }, override: { a: 1 } },
-//     { nested: { b: 1 }, override: { b: 1 } },
-//   ])
-//   expect(a.merge(['nested'])).toEqual({
-//     nested: { a: 1, b: 1 },
-//     override: { b: 1 },
-//   })
-// })
-
 it('Accumulator: Clone', () => {
   const a = Accumulator.from([{ a: 1, b: 4, c: 6 }, { a: 2, b: 5 }, { a: 3 }])
   const b = a.clone({ a: 10 })
@@ -92,20 +81,6 @@ it('Accumulator: Clone', () => {
 it('Accumulator: Nested', () => {
   const a = Accumulator.from(Accumulator.from({ a: 1 }))
   expect(a.e('a')).toEqual(1)
-})
-
-it('Accumulator: Register keys', () => {
-  const a = Accumulator.from({
-    a: 1,
-    b: 2,
-    c: 3,
-    d: 4,
-  })
-  expect(a.getRegisteredKeySet().has('a')).toBeTruthy()
-  expect(a.getRegisteredKeySet().has('b')).toBeTruthy()
-  expect(a.getRegisteredKeySet().has('c')).toBeTruthy()
-  expect(a.getRegisteredKeySet().has('d')).toBeTruthy()
-  expect(a.getRegisteredKeySet().has('e')).toBeFalsy()
 })
 
 it('Accumulator: Deep merge', () => {
