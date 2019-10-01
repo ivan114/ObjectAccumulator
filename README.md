@@ -1,6 +1,9 @@
 <p align="center">
   <img src="https://p165.p3.n0.cdn.getcloudapp.com/items/8LudRqj6/banner.png?v=7c2ee36a80723a1744085cf1fcc0b4ce" width="850" alt="object-accumulator-banner">
 </p>
+
+# Obejct Accumulator
+
 > A Javascript/Typescript object merging tool, focus on performance and easy-to-use. Good alternative to _deepmerge_ in most case.
 
 <p align="center">
