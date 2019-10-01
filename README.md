@@ -4,7 +4,7 @@
 > A Javascript/Typescript object merging tool, focus on performance and easy-to-use. Good alternative to _deepmerge_ in most case.
 
 <p align="center">
-  <img src="https://p165.p3.n0.cdn.getcloudapp.com/items/geuY8AA0/ObjectAccumulatorSiteButton.png?v=dbbf12374cde95fce2f7531c1b143f06" width="250" alt="object-accumulator-banner">
+  <a href="https://ivan114.github.io/ObjectAccumulator/"><img src="https://p165.p3.n0.cdn.getcloudapp.com/items/geuY8AA0/ObjectAccumulatorSiteButton.png?v=dbbf12374cde95fce2f7531c1b143f06" width="250" alt="object-accumulator-site-link-image"></a>
 </p>
 
 [![Build Status](https://travis-ci.org/ivan114/object-accumulator.svg?branch=master)](https://travis-ci.org/ivan114/object-accumulator)
