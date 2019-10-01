@@ -129,6 +129,20 @@ Object Accumulator use a major shortcut to achieve fast merging. Instead of loop
   <img src="https://p165.p3.n0.cdn.getcloudapp.com/items/xQuvKoQG/AccumulateAnimation.gif?v=98bab277080032f43a689978a79e9265" width="850" alt="merging-animation">
 </p>
 
+## ⌛️ Performance
+
+Compare with other merging solution, Object Accumulator provides excellent performance both in terms of processing time and memory usage. Moreover, if only a part of the merged object is needed, Accumulator::extract can provide even more performance boot. You may test the performance yourself on the Demo page.
+
+<p align="center">
+  <img src="https://p165.p3.n0.cdn.getcloudapp.com/items/GGu0Zbxx/ChartOfShallowMerge.png?v=72acca1f54b8e09884e7545f634e30ee" width="850" alt="shallow-merge-chart">
+</p>
+
+Accumulator supports deep merge / nested merge, it run even faster for nested objects compare to other merging method.
+
+<p align="center">
+  <img src="https://p165.p3.n0.cdn.getcloudapp.com/items/qGuzAnLo/ChartOfDeepMerge.png?v=5ffee62ef1a40a106cce36bc68fb5233" width="850" alt="deep-merge-chart">
+</p>
+
 ## 📜 API
 
 Coming Soon
