@@ -8,6 +8,7 @@
 
 <p align="center">
   <a href="https://ivan114.github.io/ObjectAccumulator/"><img src="https://p165.p3.n0.cdn.getcloudapp.com/items/geuY8AA0/ObjectAccumulatorSiteButton.png?v=dbbf12374cde95fce2f7531c1b143f06" width="250" alt="object-accumulator-site-link-image"></a>
+  <a href="https://ivan114.github.io/ObjectAccumulator/docs"><img src="https://p165.p3.n0.cdn.getcloudapp.com/items/7Kux1req/DocsButton.png?v=a238cb797bb3ae7a85460bb13f4a851d" width="154" alt="object-accumulator-docs-link-image"></a>
 </p>
 
 [![Build Status](https://travis-ci.org/ivan114/object-accumulator.svg?branch=master)](https://travis-ci.org/ivan114/object-accumulator)
@@ -145,7 +146,7 @@ Accumulator supports deep merge / nested merge, it run even faster for nested ob
 
 ## 📜 API
 
-Coming Soon
+Reference [here](https://ivan114.github.io/ObjectAccumulator/docs)
 
 ## 🥂 License
 
