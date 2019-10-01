@@ -1,0 +1,1 @@
+{"version":3,"sources":["App.css"],"names":[],"mappings":"AAAA,yCACE,qFAEE,iBAAkB,CAClB,OACF,CACF","file":"main.47b469b9.chunk.css","sourcesContent":["@media only screen and (max-width: 767px) {\n  .ui.grid .stackable.row .ui.vertical.divider,\n  .ui.stackable.grid .ui.vertical.divider {\n    position: absolute;\n    top: 45%;\n  }\n}\n"]}
