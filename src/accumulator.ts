@@ -253,6 +253,13 @@ export class Accumulator<T> {
     return this.clone(add)
   }
 
+  /**
+   * Manually register keys when the index of object may not appear at the beginning of creating Accumulator,
+   * by using this function yan can let Accumulator knows there are additional keys when merging
+   *
+   * @param {string[]} keys
+   * @memberof Accumulator
+   */
   registerKeys(keys: string[]) {
     keys.forEach((k) => this.keySet.add(k))
   }
