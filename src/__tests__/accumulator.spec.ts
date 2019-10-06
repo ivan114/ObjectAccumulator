@@ -83,7 +83,7 @@ it('Accumulator: Nested', () => {
   expect(a.e('a')).toEqual(1)
 })
 
-it('Accumulator: Deep merge', () => {
+it('Accumulator: Deep merge/extract', () => {
   const obj1 = {
     a: {
       x: 1,
@@ -98,11 +98,31 @@ it('Accumulator: Deep merge', () => {
     },
   }
   const a = Accumulator.from([obj1, obj2])
+  expect(a.extract('a').extract('x')).toEqual(1)
   expect(a.merge()).toMatchObject({
     a: {
       x: 1,
       y: 3,
       z: 4,
     },
+  })
+})
+
+it('Accumulator: Assisted merge', () => {
+  const o1 = {
+    a: 1,
+    b: 2,
+  }
+  const o2 = {
+    a: 10,
+    b: 20,
+    c: 30,
+  }
+  const a = Accumulator.from([o1, o2])
+  a.registerKeys(['a', 'b', 'c'])
+  expect(a.merge()).toMatchObject({
+    a: 10,
+    b: 20,
+    c: 30,
   })
 })

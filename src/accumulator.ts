@@ -4,6 +4,7 @@ type AcceptedTargets<T> = T | T[] | Accumulator<T> | Array<Accumulator<T>>
 
 interface ExtractionConfig {
   shallow?: boolean
+  merge?: boolean
 }
 
 function isNonNullObject(value: any) {
@@ -102,7 +103,7 @@ export class Accumulator<T> {
   constructor(items?: T[]) {
     if (items) {
       this.source = items
-      this.registerKeys()
+      this.registerStart()
     }
   }
 
@@ -128,7 +129,7 @@ export class Accumulator<T> {
       this.source.push(item)
     }
 
-    this.registerKeys()
+    this.registerStart()
 
     return this
   }
@@ -169,9 +170,14 @@ export class Accumulator<T> {
         const extractedValue = ex(item)
         // If it is object, use nested Accumulator approach
         if (!shallow && isNonNullObject(extractedValue)) {
-          return Accumulator.from(
+          const acc = Accumulator.from(
             this.source.map(ex).filter(isNonNullObject)
-          ).merge()
+          )
+          if (config.merge) {
+            return acc.merge()
+          } else {
+            return acc
+          }
         }
         if (extractedValue !== undefined) {
           return extractedValue
@@ -203,7 +209,7 @@ export class Accumulator<T> {
    * @returns {T}
    * @memberof Accumulator
    */
-  merge(config: ExtractionConfig = {}): T {
+  merge(config: ExtractionConfig = { merge: true }): T {
     const result = {}
     for (const k of this.keySet) {
       ;(result as any)[k] = this.e(k, config)
@@ -247,12 +253,16 @@ export class Accumulator<T> {
     return this.clone(add)
   }
 
-  private registerKeys() {
+  registerKeys(keys: string[]) {
+    keys.forEach((k) => this.keySet.add(k))
+  }
+
+  private registerStart() {
     if (this.keySet.size !== 0) {
       return
     }
     if (this.source && this.source.length !== 0) {
-      Object.keys(this.source[0]).forEach((k) => this.keySet.add(k))
+      this.registerKeys(Object.keys(this.source[0]))
     }
   }
 }
