@@ -1,0 +1,282 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>object-accumulator</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">object-accumulator</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> object-accumulator</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p align="center">
+					<img src="https://p165.p3.n0.cdn.getcloudapp.com/items/8LudRqj6/banner.png?v=7c2ee36a80723a1744085cf1fcc0b4ce" width="850" alt="object-accumulator-banner">
+				</p>
+				<h1 id="object-accumulator">Object Accumulator</h1>
+				<blockquote>
+					<p>A Javascript/Typescript object merging tool, focus on performance and easy-to-use. Good alternative to <em>deepmerge</em> in most case.</p>
+				</blockquote>
+				<p align="center">
+					<a href="https://ivan114.github.io/ObjectAccumulator/"><img src="https://p165.p3.n0.cdn.getcloudapp.com/items/geuY8AA0/ObjectAccumulatorSiteButton.png?v=dbbf12374cde95fce2f7531c1b143f06" width="250" alt="object-accumulator-site-link-image"></a>
+					<a href="https://ivan114.github.io/ObjectAccumulator/docs"><img src="https://p165.p3.n0.cdn.getcloudapp.com/items/7Kux1req/DocsButton.png?v=a238cb797bb3ae7a85460bb13f4a851d" width="154" alt="object-accumulator-docs-link-image"></a>
+				</p>
+				<p><a href="https://travis-ci.org/ivan114/ObjectAccumulator"><img src="https://travis-ci.org/ivan114/ObjectAccumulator.svg?branch=master" alt="Build Status"></a>
+					<a href="https://www.npmjs.com/package/object-accumulator"><img src="https://img.shields.io/npm/v/object-accumulator.svg" alt="NPM version"></a>
+					<img src="https://img.shields.io/bundlephobia/minzip/object-accumulator" alt="npm bundle size">
+					<img src="https://img.shields.io/npm/dm/object-accumulator.svg" alt="Downloads">
+					<a href="https://github.com/conventional-changelog/standard-version"><img src="https://img.shields.io/badge/release-standard%20version-brightgreen.svg" alt="Standard Version"></a>
+					<a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg" alt="styled with prettier"></a>
+				<a href="https://conventionalcommits.org"><img src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg" alt="Conventional Commits"></a></p>
+				<hr>
+				<h2 id="-features">✨ Features</h2>
+				<ul>
+					<li>Merge objects with high volume and good performance concern.</li>
+					<li>Support high volume (Object.assign merging 100000 items on Safari throw exception :/ )</li>
+					<li>High Performance (Lazy picking value instead of really merging all objects)</li>
+					<li>Low Memory Usage (Alway reuse same instance data structure instead of creating new every time)</li>
+					<li>Lazy Process and Interactive (Perform merge only when you need the result, not doing unnecessary processing, Accumulator can be manipulated before/after merge)</li>
+					<li>Unit tested with high coverage (&gt;90%)</li>
+					<li>Lightweight and without external dependencies (~1kB minzipped)</li>
+				</ul>
+				<h2 id="-installation">🔧 Installation</h2>
+				<pre><code class="language-sh">yarn add object-accumulator</code></pre>
+				<h2 id="-getting-started">🎬 Getting started</h2>
+				<p>Package provide an easy-to-use <strong>Accumulator</strong> object to perform merge.</p>
+				<p>First, for this example, a list of user objects that needed to be merge is here, for real world usage the amount of object may be a lot more.</p>
+				<details>
+					<summary>
+						Example User Data:
+					</summary>
+					<pre><code class="language-json">[
+  {
+    <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"Bobbie"</span>,
+    <span class="hljs-attr">"lastName"</span>: <span class="hljs-string">"Klocko"</span>,
+    <span class="hljs-attr">"username"</span>: <span class="hljs-string">"Bobbie25"</span>,
+    <span class="hljs-attr">"email"</span>: <span class="hljs-string">"Bobbie_Klocko93@hotmail.com"</span>,
+    <span class="hljs-attr">"phoneNo"</span>: <span class="hljs-string">"223-401-4005 x8835"</span>,
+    <span class="hljs-attr">"country"</span>: <span class="hljs-string">"Berkshire"</span>
+  },
+  {
+    <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"Electa"</span>,
+    <span class="hljs-attr">"username"</span>: <span class="hljs-string">"Electa.Bechtelar"</span>,
+    <span class="hljs-attr">"phoneNo"</span>: <span class="hljs-string">"1-090-965-9494 x6833"</span>,
+    <span class="hljs-attr">"country"</span>: <span class="hljs-string">"Bedfordshire"</span>
+  },
+  {
+    <span class="hljs-attr">"username"</span>: <span class="hljs-string">"Nicholaus14"</span>
+  },
+  {
+    <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"Reynold"</span>,
+    <span class="hljs-attr">"username"</span>: <span class="hljs-string">"Reynold.Crooks67"</span>,
+    <span class="hljs-attr">"phoneNo"</span>: <span class="hljs-string">"(069) 975-2864"</span>
+  },
+  {
+    <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"Clementine"</span>,
+    <span class="hljs-attr">"username"</span>: <span class="hljs-string">"Clementine_Aufderhar"</span>,
+    <span class="hljs-attr">"email"</span>: <span class="hljs-string">"Clementine_Aufderhar83@hotmail.com"</span>
+  },
+  {
+    <span class="hljs-attr">"firstName"</span>: <span class="hljs-string">"Patience"</span>,
+    <span class="hljs-attr">"email"</span>: <span class="hljs-string">"Patience.Cremin@yahoo.com"</span>
+  }
+]</code></pre>
+				</details>
+				<p>Usage: <a href="https://repl.it/repls/TechnologicalInfantilePagerecognition"><strong>Try it</strong> on Repl.it</a></p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Accumulator } <span class="hljs-keyword">from</span> <span class="hljs-string">'object-accumulator'</span>
+
+<span class="hljs-keyword">import</span> { users } <span class="hljs-keyword">from</span> <span class="hljs-string">'./user'</span>
+
+<span class="hljs-comment">// Create new instance of Accumulator, list of object here is passed by reference so memory usage is minimum</span>
+<span class="hljs-keyword">const</span> a = Accumulator.from(users)
+
+<span class="hljs-comment">// Objects is not merged immediately, Accumulator allow item(s) to be added afterward</span>
+a.add({
+  country: <span class="hljs-string">'Japan'</span>,
+})
+
+<span class="hljs-comment">// Can extract single targeted value from Accumulator, no need to merge whole object, a lot faster</span>
+<span class="hljs-keyword">const</span> mergedEmail = a.extract(<span class="hljs-string">'email'</span>) <span class="hljs-comment">// Clementine_Aufderhar83@hotmail.com</span>
+<span class="hljs-keyword">const</span> mergedCountry = a.extract(<span class="hljs-string">'country'</span>) <span class="hljs-comment">// Japan</span>
+
+<span class="hljs-comment">// Merge whole object if it is really needed, not as fast as extract() but still reasonable efficient</span>
+<span class="hljs-keyword">const</span> result = a.merge()
+<span class="hljs-comment">// {"firstName":"Patience","lastName":"Klocko","username":"Clementine_Aufderhar","email":"Patience.Cremin@yahoo.com","phoneNo":"(069) 975-2864","country":"Japan"}</span></code></pre>
+				<h2 id="-how-it-works">👀 How it works</h2>
+				<p>To achieve these benefits, there are few tricks apply in Accumulator. The main trick is to use different approach to combine objects into one.</p>
+				<h3 id="classic-merging">Classic Merging</h3>
+				<p>For classic merging, each instance of merging object will be iterated, therefore when the amount of items is a lot, performance will suffer.</p>
+				<p align="center">
+					Classic Merge
+					<img src="https://p165.p3.n0.cdn.getcloudapp.com/items/nOuWde56/MergeAnimation.gif?v=9ef9ef6cf2cda2da2c4ddec459fe3024" width="850" alt="merging-animation">
+				</p>
+				<h3 id="merging-in-object-accumulator">&quot;Merging&quot; in Object Accumulator</h3>
+				<p>Object Accumulator use a major shortcut to achieve fast merging. Instead of looping through and real merging each object in the items. Object Accumulator trace object properties backward to acquire needed values, so in normal scenario, merging can be completed without iterating all items.</p>
+				<p align="center">
+					Smart Merge
+					<img src="https://p165.p3.n0.cdn.getcloudapp.com/items/xQuvKoQG/AccumulateAnimation.gif?v=98bab277080032f43a689978a79e9265" width="850" alt="merging-animation">
+				</p>
+				<h2 id="-performance">⌛️ Performance</h2>
+				<p>Compare with other merging solution, Object Accumulator provides excellent performance both in terms of processing time and memory usage. Moreover, if only a part of the merged object is needed, Accumulator::extract can provide even more performance boot. You may test the performance yourself on the Demo page.</p>
+				<p align="center">
+					<img src="https://p165.p3.n0.cdn.getcloudapp.com/items/GGu0Zbxx/ChartOfShallowMerge.png?v=72acca1f54b8e09884e7545f634e30ee" width="850" alt="shallow-merge-chart">
+				</p>
+				<p>Accumulator supports deep merge / nested merge, it run even faster for nested objects compare to other merging method.</p>
+				<p align="center">
+					<img src="https://p165.p3.n0.cdn.getcloudapp.com/items/qGuzAnLo/ChartOfDeepMerge.png?v=5ffee62ef1a40a106cce36bc68fb5233" width="850" alt="deep-merge-chart">
+				</p>
+				<h2 id="-api">📜 API</h2>
+				<p>Reference <a href="https://ivan114.github.io/ObjectAccumulator/docs">here</a></p>
+				<h2 id="-license">🥂 License</h2>
+				<p><a href="./LICENSE.md">MIT</a> as always</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_accumulator_.html">"accumulator"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_environment_.html">"environment"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_index_.html">"index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_keyed_accumulator_.html">"keyed-<wbr>accumulator"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_types_.html">"types"</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
