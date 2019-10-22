@@ -11,7 +11,7 @@
   <a href="https://ivan114.github.io/ObjectAccumulator/docs"><img src="https://p165.p3.n0.cdn.getcloudapp.com/items/7Kux1req/DocsButton.png?v=a238cb797bb3ae7a85460bb13f4a851d" width="154" alt="object-accumulator-docs-link-image"></a>
 </p>
 
-[![Build Status](https://travis-ci.org/ivan114/ObjectAccumulator.svg?branch=master)](https://travis-ci.org/ivan114/ObjectAccumulator)
+[![Build Status](https://github.com/ivan114/ObjectAccumulator/workflows/Node%20CI/badge.svg)](https://github.com/ivan114/ObjectAccumulator/actions)
 [![NPM version](https://img.shields.io/npm/v/object-accumulator.svg)](https://www.npmjs.com/package/object-accumulator)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/object-accumulator)
 ![Downloads](https://img.shields.io/npm/dm/object-accumulator.svg)
