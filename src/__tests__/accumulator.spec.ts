@@ -119,6 +119,11 @@ it('Accumulator: Assisted merge', () => {
     c: 30,
   }
   const a = Accumulator.from([o1, o2])
+  expect(a.merge(['a', 'b', 'c'])).toMatchObject({
+    a: 10,
+    b: 20,
+    c: 30,
+  })
   a.registerKeys(['a', 'b', 'c'])
   expect(a.merge()).toMatchObject({
     a: 10,

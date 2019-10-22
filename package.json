@@ -1,6 +1,6 @@
 {
   "name": "object-accumulator",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Javascript/Typescript object merging tool, focus on performance and easy-to-use. Good alternative to deepmerge and lodash _.merge in most cases.",
   "keywords": [
     "object",
@@ -21,7 +21,7 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/ivan114/object-accumulator"
+    "url": "https://github.com/ivan114/ObjectAccumulator"
   },
   "author": "Ivan Li <ivan114@me.com>",
   "license": "MIT",

@@ -5,6 +5,7 @@ type AcceptedTargets<T> = T | T[] | Accumulator<T> | Array<Accumulator<T>>
 interface ExtractionConfig {
   shallow?: boolean
   merge?: boolean
+  keys?: string[]
 }
 
 function isNonNullObject(value: any) {
@@ -174,7 +175,9 @@ export class Accumulator<T> {
             this.source.map(ex).filter(isNonNullObject)
           )
           if (config.merge) {
-            return acc.merge()
+            const cloneConfig = { ...config, keys: undefined }
+
+            return acc.merge(cloneConfig)
           } else {
             return acc
           }
@@ -205,14 +208,17 @@ export class Accumulator<T> {
   /**
    * Merge whole object
    *
-   * @param {ExtractionConfig} [config={}]
+   * @param {(ExtractionConfig | string[])} [config]
    * @returns {T}
    * @memberof Accumulator
    */
-  merge(config: ExtractionConfig = { merge: true }): T {
+  merge(config?: ExtractionConfig | string[]): T {
+    const inputConfig = Array.isArray(config) ? { keys: config } : config || {}
+    const finalConfig: ExtractionConfig = { merge: true, ...inputConfig }
+    const finalKeys = finalConfig.keys || [...this.keySet]
     const result = {}
-    for (const k of this.keySet) {
-      ;(result as any)[k] = this.e(k, config)
+    for (const k of finalKeys) {
+      ;(result as any)[k] = this.extract(k, finalConfig)
     }
 
     return result as T

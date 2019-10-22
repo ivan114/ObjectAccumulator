@@ -28,7 +28,9 @@
 - High Performance (Lazy picking value instead of really merging all objects)
 - Low Memory Usage (Alway reuse same instance data structure instead of creating new every time)
 - Lazy Process and Interactive (Perform merge only when you need the result, not doing unnecessary processing, Accumulator can be manipulated before/after merge)
-- Lightweight and without external dependencies (~1KB gzipped)
+- Unit tested with high coverage (>90%)
+- Support major browsers on desktop and mobile including IE 11
+- Lightweight and without external dependencies (1.3kB minzipped)
 
 ## 🔧 Installation
 
