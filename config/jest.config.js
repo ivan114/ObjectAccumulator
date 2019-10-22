@@ -9,6 +9,13 @@ const config = {
     '<rootDir>/src/**/?(*.)+(spec|test).ts?(x)',
   ],
   testPathIgnorePatterns: ['dist'],
+  collectCoverage: true,
+  collectCoverageFrom: [
+    '**/*.{js,jsx,ts,tsx}',
+    '!**/node_modules/**',
+    '!**/dist/**',
+    '!**/config/**',
+  ],
   coverageThreshold: {
     global: {
       branches: 80,
