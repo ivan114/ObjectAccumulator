@@ -38,6 +38,7 @@
     "docs": "typedoc -p . --theme default --target 'es6' --excludeNotExported --excludePrivate --ignoreCompilerErrors --exclude \"**/src/**/__tests__/*.*\" --out docs src/",
     "test": "jest -c ./config/jest.config.js",
     "test:watch": "npm t -- --watchAll",
+    "test:watch-coverage": "npm t -- --watchAll --coverage",
     "test:coverage": "npm t -- --coverage",
     "test:ci": "npm t -- --ci",
     "validate-js": "tsc -p ./config && tsc -p ./scripts",

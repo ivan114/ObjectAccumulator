@@ -11,7 +11,7 @@
   "files.associations": {
     "tslint*.json": "jsonc"
   },
-  "jest.pathToJest": "yarn test:watch",
+  "jest.pathToJest": "yarn test:watch-coverage",
   "jest.autoEnable": true,
   "jest.showCoverageOnLoad": true
 }
