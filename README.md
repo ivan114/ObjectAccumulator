@@ -30,7 +30,7 @@
 - Lazy Process and Interactive (Perform merge only when you need the result, not doing unnecessary processing, Accumulator can be manipulated before/after merge)
 - Unit tested with high coverage (>90%)
 - Support major browsers on desktop and mobile including IE 11
-- Lightweight and without external dependencies (1.3kB minzipped)
+- Lightweight and without external dependencies (1kB minzipped)
 
 ## 🔧 Installation
 
