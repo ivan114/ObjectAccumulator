@@ -1,6 +1,6 @@
 {
   "name": "object-accumulator",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "A Javascript/Typescript object merging tool, focus on performance and easy-to-use. Good alternative to deepmerge and lodash _.merge in most cases.",
   "keywords": [
     "object",
