@@ -153,13 +153,13 @@ export class Accumulator<T> {
    *
    * @param {(((item: T) => any) | string)} extractor
    * @param {ExtractionConfig} [config={}]
-   * @returns
+   * @returns {any}
    * @memberof Accumulator
    */
   extract(
     extractor: ((item: T) => any) | string,
     config: ExtractionConfig = {}
-  ) {
+  ): any {
     const { shallow } = config
     // use while loop to search backward is faster;
     let searchingIndex = this.source.length - 1
@@ -240,10 +240,10 @@ export class Accumulator<T> {
    * optional parameter item can be passed into it for adding into the new Accumulator at the same time
    *
    * @param {AcceptedTargets<T>} [add]
-   * @returns
+   * @returns {Accumulator<T>}
    * @memberof Accumulator
    */
-  clone(add?: AcceptedTargets<T>) {
+  clone(add?: AcceptedTargets<T>): Accumulator<T> {
     return Accumulator.from(this.source).add(add)
   }
 
