@@ -32,30 +32,30 @@
   },
   "scripts": {
     "cleanup": "shx rm -rf dist",
-    "prebuild": "npm run cleanup && npm run verify",
+    "prebuild": "yarn run cleanup && yarn run verify",
     "build": "tsc && tsc --target es2018 --outDir dist/esm2015 && rollup -c config/rollup.config.js && rollup -c config/rollup.config.js --environment NODE_ENV:production",
-    "postbuild": "node scripts/copy && npm run size",
+    "postbuild": "node scripts/copy && yarn run size",
     "docs": "typedoc -p . --theme default --target 'es6' --excludeNotExported --excludePrivate --ignoreCompilerErrors --exclude \"**/src/**/__tests__/*.*\" --out docs src/",
     "test": "jest -c ./config/jest.config.js",
-    "test:watch": "npm t -- --watchAll",
-    "test:watch-coverage": "npm t -- --watchAll --coverage",
-    "test:coverage": "npm t -- --coverage",
-    "test:ci": "npm t -- --ci",
+    "test:watch": "yarn t -- --watchAll",
+    "test:watch-coverage": "yarn t -- --watchAll --coverage",
+    "test:coverage": "yarn t -- --coverage",
+    "test:ci": "yarn t -- --ci",
     "validate-js": "tsc -p ./config && tsc -p ./scripts",
-    "verify": "npm run validate-js && npm run style && npm run test:ci",
+    "verify": "yarn run validate-js && yarn run style && yarn run test:ci",
     "commit": "git-cz",
-    "style": "npm run format -- --list-different && npm run lint",
-    "style:fix": "npm run format:fix && npm run lint:fix",
+    "style": "yarn run format -- --list-different && yarn run lint",
+    "style:fix": "yarn run format:fix && yarn run lint:fix",
     "format": "prettier \"**/*.{ts,tsx,js,jsx,css,scss,sass,less,md}\"",
-    "format:fix": "npm run format -- --write",
+    "format:fix": "yarn run format -- --write",
     "lint": "tslint --project tsconfig.json --format codeFrame",
-    "lint:fix": "npm run lint -- --fix",
-    "prerelease": "npm run build",
+    "lint:fix": "yarn run lint -- --fix",
+    "prerelease": "yarn run build",
     "release": "standard-version",
-    "postrelease": "node scripts/copy && node scripts/build && npm run release:github && npm run release:npm",
+    "postrelease": "node scripts/copy && node scripts/build && yarn run release:github && yarn run release:npm",
     "release:github": "git push --no-verify --follow-tags origin master",
-    "release:npm": "npm publish dist",
-    "release:preflight": "npm pack ./dist --dry-run",
+    "release:npm": "yarn publish dist",
+    "release:preflight": "yarn pack ./dist --dry-run",
     "size": "node scripts/file-size ./dist/bundles/index.umd.min.js ./dist/bundles/index.esm.min.js",
     "deploydoc": "gh-pages -d docs -e ./docs"
   },
@@ -68,7 +68,7 @@
     "hooks": {
       "commit-msg": "commitlint --config config/commitlint.config.js -E HUSKY_GIT_PARAMS",
       "pre-commit": "lint-staged",
-      "pre-push": "npm run style && npm test -- --bail --onlyChanged"
+      "pre-push": "yarn run style && yarn test -- --bail --onlyChanged"
     }
   },
   "lint-staged": {
@@ -77,7 +77,7 @@
       "git add"
     ],
     "src/**/*.{ts,tsx}": [
-      "npm run lint:fix",
+      "yarn run lint:fix",
       "git add"
     ]
   },
